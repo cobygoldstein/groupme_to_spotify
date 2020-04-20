@@ -55,8 +55,7 @@ def add_to_playlist(track_ids):
 
 #### RUN:####
 spotify_ids = get_songs()
-print(spotify_ids)
-top_50 = spotify_ids[0:50]
+top_50 = spotify_ids[0:50] #Gets 50 most recent songs
 add_to_playlist(top_50)
 
 
