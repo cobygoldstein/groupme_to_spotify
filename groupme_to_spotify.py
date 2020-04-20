@@ -1,5 +1,5 @@
-from Groupy.groupy.client import Client
-import spotipy
+from Groupy.groupy.client import Client #https://pypi.org/project/GroupyAPI/
+import spotipy #https://github.com/plamere/spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy.util as util
 
