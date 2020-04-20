@@ -2,18 +2,14 @@ from Groupy.groupy.client import Client #https://pypi.org/project/GroupyAPI/
 import spotipy #https://github.com/plamere/spotipy
 import spotipy.util as util
 
-#API KEYS / INFO
-
 #Groupme Credentials
-token = '' #FIXME groupme token
-group_name = '' #FIXME str name of group
+token = "" #FIXME get from groupme API
+group_name = "" #FIXME str: groupchat that you want to target
 #Spotify Credentials
 username = '' #FIXME Spotify username
 client_id = '' #FIXME Found on Spotify Developer dashboard
 client_secret = '' #FIXME Found on Spotify Developer dashboard
 playlist_id = '' #FIXME Spotify playlist URI, found on actual playlist
-
-
 
 client = Client.from_token(token)
 
@@ -22,15 +18,13 @@ client = Client.from_token(token)
 def get_songs():
     spotify_ids = []
     groups = client.groups.list(omit="memberships")
-    for i in groups:
+    for i in groups:                                # Locates and sets your targeted groupchat to "group"
         if i.name == group_name: 
             group = i
-
-    for message in group.messages.list_all():
-        i = str(message.text)                   # i is a single messages
-        whole_link = message.text                                
-        if i.startswith('https://open.spotify.com/track/'):
-            spotify_ids.append(whole_link[31:53])
+    for message in group.messages.list_all():      # Searches through all messages for spotify links   
+        message_str = str(message.text)                        
+        if message_str.startswith('https://open.spotify.com/track/'):
+            spotify_ids.append(message_str[31:53])
 
     return spotify_ids
 
