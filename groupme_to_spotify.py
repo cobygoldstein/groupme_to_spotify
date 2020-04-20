@@ -1,6 +1,5 @@
 from Groupy.groupy.client import Client #https://pypi.org/project/GroupyAPI/
 import spotipy #https://github.com/plamere/spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy.util as util
 
 #API KEYS / INFO
@@ -30,7 +29,7 @@ def get_songs():
     for message in group.messages.list_all():
         i = str(message.text)                   # i is a single messages
         whole_link = message.text                                
-        if i.startswith('https://open.spotify.com/track/') :
+        if i.startswith('https://open.spotify.com/track/'):
             spotify_ids.append(whole_link[31:53])
 
     return spotify_ids
@@ -57,8 +56,3 @@ def add_to_playlist(track_ids):
 spotify_ids = get_songs()
 top_50 = spotify_ids[0:50] #Gets 50 most recent songs
 add_to_playlist(top_50)
-
-
-
-
-
